@@ -25,23 +25,23 @@
         state: latest
     - name: "Definindo o dominio NIS"
       command: ypdomainname empresa.corp.bx
-    - name: "Conpiando arquivos de configuração ntp"
+    - name: "Copiando arquivo de configuração do ntp"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/chrony.conf
         dest: /etc/chrony.conf
-    - name: "Conpiando arquivos de configuração hosts"
+    - name: "Copiando arquivo de configuração do hosts"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/hosts
         dest: /etc/hosts
-    - name: "Conpiando arquivos de configuração network"
+    - name: "Copiando arquivo de configuração do network"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/sysconfig/network
         dest: /etc/sysconfig/network
-    - name: "Conpiando arquivos de configuração yppasswdd"
+    - name: "Copiando arquivo de configuração do yppasswdd"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/sysconfig/yppasswdd
         dest: /etc/sysconfig/network
-    - name: "Conpiando arquivos de configuração securenets"
+    - name: "Copiando arquivo de configuração do securenets"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/var/yp/securenets
         dest: /var/yp/securenets
@@ -58,7 +58,7 @@
         - ntp
         - nfs
         - mountd
-    - name: "habilitando as portas no firewalld"
+    - name: "Habilitando as portas no firewalld"
       firewalld:
         port: "{{ item }}"
         permanent: yes
@@ -67,7 +67,7 @@
       loop:
         - 944-951/tcp
         - 944-951/udp
-    - name: "habilitando os serviços no SELinux"
+    - name: "Habilitando os serviços no SELinux"
       seboolean:
         name: "{{ item }}"
         state: yes
