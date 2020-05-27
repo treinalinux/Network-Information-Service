@@ -1,9 +1,23 @@
+#
+#	Nome do Script:..........NIS Master com Ansible
+#	Propósito do Script:.....Servidor NIS master
+#	Sistema Operacional......CentOS 8
+#	Criado em:...............27/05/2020
+# Versão do Script:........1.0
+# Nome do criador:.........Alan da Silva Alves
+# Contato:.................contato@treinalinux.com
+#	Site:....................treinalinux.com
+#	Nível de Privilégio:.....User Admin
+#	Dependências:............Ansible
+#
+#
+---
 - hosts: all
   become: true
   tasks:
-    - name: "Normalmente usado para instalar o python2 para o ansible"
+    - name: "Normalmente usado para instalar o python2"
       raw: dnf install epel-release.noarch -y; dnf --enablerepo=epel -y install ansible openssh-clients
-    - name: 'Instação de pacotes e denpendências do Master NIS'
+    - name: 'Instalação de pacotes e denpendências do Master NIS'
       yum:
         name:
           - vim
@@ -11,8 +25,10 @@
           - ypserv
           - rpcbind
           - yp-tools
+          - bind-utils
           - httpd
           - autofs
+          - krb5-server
           - whowatch
           - policycoreutils-python-utils.noarch
           - libselinux
@@ -23,31 +39,43 @@
           - setools-console
           - glibc-langpack-pt
         state: latest
-    - name: "Definindo o dominio NIS"
+    - name: "Definindo o domínio NIS"
       command: ypdomainname empresa.corp.bx
-    - name: "Copiando arquivo de configuração do ntp"
+    - name: "Copiando arquivo de configuração ntp"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/chrony.conf
         dest: /etc/chrony.conf
-    - name: "Copiando arquivo de configuração do hosts"
+    - name: "Copiando arquivo de configuração hosts"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/hosts
         dest: /etc/hosts
-    - name: "Copiando arquivo de configuração do network"
+    - name: "Copiando arquivo de configuração network"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/sysconfig/network
         dest: /etc/sysconfig/network
-    - name: "Copiando arquivo de configuração do yppasswdd"
+    - name: "Copiando arquivo de configuração yppasswdd"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/sysconfig/yppasswdd
-        dest: /etc/sysconfig/network
-    - name: "Copiando arquivo de configuração do securenets"
+        dest: /etc/sysconfig/yppasswdd
+    - name: "Copiando arquivo de configuração securenets"
       copy:
         src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/var/yp/securenets
         dest: /var/yp/securenets
+    - name: "Copiando arquivo de configuração do krb5.conf"
+      copy:
+        src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/etc/krb5.conf
+        dest: /etc/krb5.conf
+    - name: "Copiando arquivo de configuração do kdc.conf"
+      copy:
+        src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/var/kerberos/krb5kdc/kdc.conf
+        dest: /var/kerberos/krb5kdc/kdc.conf
+    - name: "Copiando arquivo de configuração do kadm5"
+      copy:
+        src: /media/Backup/Vagrant/Arquivos/trabalho/Configs/var/kerberos/krb5kdc/kadm5.acl
+        dest: /var/kerberos/krb5kdc/kadm5.acl
     - name: "Inciando o firewalld"
       command: systemctl start firewalld.service
-    - name: "habilitando os serviços no firewalld"
+    - name: "Habilitando os serviços no firewalld"
       firewalld:
         service: "{{ item }}"
         permanent: yes
@@ -75,7 +103,7 @@
       loop:
         - nis_enabled
         - domain_can_mmap_files
-    - name: habilitando os serviços
+    - name: "Habilitando os serviços no systemd"
       systemd:
         name: "{{ item }}"
         state: started
