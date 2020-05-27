@@ -15,7 +15,7 @@
 - hosts: all
   become: true
   tasks:
-    - name: "Normalmente usado para instalar o python2"
+    - name: "Normalmente usado para instalar pacotes para o ansible"
       raw: dnf install epel-release.noarch -y; dnf --enablerepo=epel -y install ansible openssh-clients
     - name: 'Instalação de pacotes e denpendências do Master NIS'
       yum:
