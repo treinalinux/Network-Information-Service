@@ -1,6 +1,6 @@
 #
-# Nome do Script:..........NIS Master com Ansible
-# Propósito do Script:.....Servidor NIS master
+# Nome do Script:..........master_nis.yml 
+# Propósito do Script:.....Servidor NIS master com Ansible
 # Sistema Operacional......CentOS 8
 # Criado em:...............27/05/2020
 # Versão do Script:........1.0
