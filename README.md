@@ -7,7 +7,7 @@ O NIS é um sistema muito antigo, mas ainda usado por grandes empresas.
 Muitas empresa não precisam usar o serviço de diretório pesado como os da Microsft ou até mesmo os alguns de código aberto, o NIS ainda é leve e útil.  
 
 | Servidores Previstos   | Arquivos Ansible       | Programas Previstos    | Crontab dos Mapas      | 
-| :--:                   | :--:                   | ---------------------- | :--: |
+| :--                    | :--                    | :--                    | :--:                   |
 |  NIS Master            | master_nis.yml         | add_new_user.sh        | 15 minutos             |
 |  NIS Slave             | slave_nis.yml          | add_netgroup_user.sh   |                        |
 |  NFS Home              | nfs_nis.yml            | add_netgroup_host.sh   |                        |
