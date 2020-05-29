@@ -11,7 +11,7 @@ Muitas empresa não precisam usar o serviço de diretório pesado como os da Mic
 |  NIS Master            | master_nis.yml         | add_new_user.sh        | 15 minutos             |
 |  NIS Slave             | slave_nis.yml          | add_netgroup_user.sh   |                        |
 |  Storage NFS           | nfs_nis.yml            | add_netgroup_host.sh   |                        |
-|                        |                        |                        |                        |
+|                        |                        | update_nis_maps.sh     |                        |
 
 
 ## Nossos arquivos até o momento:
@@ -24,6 +24,10 @@ Muitas empresa não precisam usar o serviço de diretório pesado como os da Mic
 
 - [ ] ~~nfs_nis.yml~~ :-1: *Em construção....
 
+- [ ] ~~add_netgroup_user.sh~~ :-1: *Em construção....
 
+- [ ] ~~add_netgroup_host.sh~~ :-1: *Em construção....
+
+- [ ] ~~update_nis_maps.sh~~ :-1: *Em construção....
 
 *Conheçar mais sobre: https://treinalinux.com* 
