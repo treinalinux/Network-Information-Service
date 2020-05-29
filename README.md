@@ -18,7 +18,7 @@ Muitas empresa não precisam usar o serviço de diretório pesado como os da Mic
 
 - [x] **master_nis.yml**	:+1: *Provisiona o Servidor NIS Master* 
 
-- [x] **add_new_user.sh**	:+1: *Pode ser usado por por analistas de nível 2 para adicionar novos usuários. Pense no uso de netgroup.*
+- [x] **add_new_user.sh**	:+1: *Pode ser usado por por analistas de nível 2 para adicionar novos usuários.*
 
 - [ ] ~~slave_nis.yml~~ :-1: *Em construção....
 
