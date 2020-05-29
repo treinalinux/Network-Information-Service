@@ -2,10 +2,28 @@
 
 Como instalar o NIS Master usando o ansible 2.9 no CentOS 8
 
-O NIS é um sistema muito antigo, mas ainda usado por grandes empresas.  Muitas empresa não precisam usar o serviço de diretório pesado como os da Microsft ou até mesmo os alguns de código aberto, o NIS ainda é leve e útil.  
+O NIS é um sistema muito antigo, mas ainda usado por grandes empresas. 
 
-**master_nis.yml**	:+1: *Provisiona o Servidor NIS Master* 
+Muitas empresa não precisam usar o serviço de diretório pesado como os da Microsft ou até mesmo os alguns de código aberto, o NIS ainda é leve e útil.  
 
-**add_new_user.sh**	:+1: *Pode ser usado por por analistas de nível 2 para adicionar novos usuários. Pense no uso de netgroup.*
+| Servidores Previstos   | Arquivos Ansible       | Programas Previstos    | Crontab dos Mapas      | 
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+|  NIS Master            | master_nis.yml         | add_new_user.sh        | 15 minutos             |
+|  NIS Slave             | slave_nis.yml          | add_netgroup_user.sh   |                        |
+|  Storage NFS           | nfs_nis.yml            | add_netgroup_host.sh   |                        |
+|                        |                        |                        |                        |
 
-https://treinalinux.com
+
+## Nossos arquivos até o momento:
+
+- [x] **master_nis.yml**	:+1: *Provisiona o Servidor NIS Master* 
+
+- [x] **add_new_user.sh**	:+1: *Pode ser usado por por analistas de nível 2 para adicionar novos usuários. Pense no uso de netgroup.*
+
+- [ ] ~~slave_nis.yml~~ :-1: *Em construção....
+
+- [ ] ~~nfs_nis.yml~~ :-1: *Em construção....
+
+
+
+*Conheçar mais sobre: https://treinalinux.com* 
